@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ASPNetSocialMedia.Data;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASPNetSocialMedia.Models
 {
@@ -15,11 +17,17 @@ namespace ASPNetSocialMedia.Models
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
         public string? Biography { get; set; }
+        [MaxLength(DataConstants.MaxPhotoLength)]
         public string? ProfileImage { get; set; } = "NoImageFound.png";
         public string Password { get; set; }
         public string? Address { get; set; }
+        [Range(DataConstants.MinUserAge, DataConstants.MaxUserAge)]
         public int Age { get; set; }
         public string? PhoneNumber { get; set; }
         public string? AdminID { get; set; }
+
+        public IEnumerable<Photo> Photos { get; set; } = new List<Photo>();
+        public ICollection<Post> Posts { get; set; } = new List<Post>();
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
