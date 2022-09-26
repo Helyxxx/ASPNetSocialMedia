@@ -4,6 +4,7 @@ using ASPNetSocialMedia.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPNetSocialMedia.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220926175041_Message")]
+    partial class Message
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -272,7 +274,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfileImage")
-                        .HasMaxLength(5242880)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -417,25 +418,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Comment", b =>
-                {
-                    b.HasOne("ASPNetSocialMedia.Models.Post", "CommentedPost")
-                        .WithMany("PostCommentList")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ASPNetSocialMedia.Models.User", "CommentUser")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CommentUser");
-
-                    b.Navigation("CommentedPost");
-                });
-
             modelBuilder.Entity("ASPNetSocialMedia.Models.Friendship", b =>
                 {
                     b.HasOne("ASPNetSocialMedia.Models.User", "Friend")
@@ -453,34 +435,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.Navigation("Friend");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Photo", b =>
-                {
-                    b.HasOne("ASPNetSocialMedia.Models.Post", "PostPhoto")
-                        .WithMany()
-                        .HasForeignKey("PostId");
-
-                    b.HasOne("ASPNetSocialMedia.Models.User", "UsersPicture")
-                        .WithMany("Photos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PostPhoto");
-
-                    b.Navigation("UsersPicture");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Post", b =>
-                {
-                    b.HasOne("ASPNetSocialMedia.Models.User", "PostUser")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PostUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -532,20 +486,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Post", b =>
-                {
-                    b.Navigation("PostCommentList");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.User", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Photos");
-
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

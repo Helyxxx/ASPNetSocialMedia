@@ -4,6 +4,7 @@ using ASPNetSocialMedia.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPNetSocialMedia.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220926013449_PostAndFriend")]
+    partial class PostAndFriend
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,25 +110,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ASPNetSocialMedia.Models.CloseFriendRelation", b =>
-                {
-                    b.Property<int>("CloseFriendRelationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CloseFriendRelationId"), 1L, 1);
-
-                    b.Property<string>("CloseFriendEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CloseUserEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CloseFriendRelationId");
-
-                    b.ToTable("CloseFriendRelation");
-                });
-
             modelBuilder.Entity("ASPNetSocialMedia.Models.FriendRelation", b =>
                 {
                     b.Property<int>("FriendRelationId")
@@ -169,28 +152,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.ToTable("Friendship");
                 });
 
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Messages", b =>
-                {
-                    b.Property<int?>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("MessageId"), 1L, 1);
-
-                    b.Property<string>("MessageContent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WhoPosted")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WhoReceived")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MessageId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("ASPNetSocialMedia.Models.Post", b =>
                 {
                     b.Property<int?>("PostId")
@@ -208,25 +169,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.HasKey("PostId");
 
                     b.ToTable("Post");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.PrivateMessage", b =>
-                {
-                    b.Property<int?>("PrivateMessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("PrivateMessageId"), 1L, 1);
-
-                    b.Property<string>("PrivateMessageContent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WhoPosted")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PrivateMessageId");
-
-                    b.ToTable("PrivateMessage");
                 });
 
             modelBuilder.Entity("ASPNetSocialMedia.Models.User", b =>
@@ -272,7 +214,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfileImage")
-                        .HasMaxLength(5242880)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -417,25 +358,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Comment", b =>
-                {
-                    b.HasOne("ASPNetSocialMedia.Models.Post", "CommentedPost")
-                        .WithMany("PostCommentList")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ASPNetSocialMedia.Models.User", "CommentUser")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CommentUser");
-
-                    b.Navigation("CommentedPost");
-                });
-
             modelBuilder.Entity("ASPNetSocialMedia.Models.Friendship", b =>
                 {
                     b.HasOne("ASPNetSocialMedia.Models.User", "Friend")
@@ -453,34 +375,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                     b.Navigation("Friend");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Photo", b =>
-                {
-                    b.HasOne("ASPNetSocialMedia.Models.Post", "PostPhoto")
-                        .WithMany()
-                        .HasForeignKey("PostId");
-
-                    b.HasOne("ASPNetSocialMedia.Models.User", "UsersPicture")
-                        .WithMany("Photos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PostPhoto");
-
-                    b.Navigation("UsersPicture");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Post", b =>
-                {
-                    b.HasOne("ASPNetSocialMedia.Models.User", "PostUser")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PostUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -532,20 +426,6 @@ namespace ASPNetSocialMedia.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.Post", b =>
-                {
-                    b.Navigation("PostCommentList");
-                });
-
-            modelBuilder.Entity("ASPNetSocialMedia.Models.User", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Photos");
-
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ASPNetSocialMedia.Models.CloseFriendRelation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your close friend list</h1>
+
+<p>
+    <a asp-action="Create">Add one of your friend as a close friend!</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Close Friend List
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CloseFriendEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CloseFriendEmail)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CloseFriendRelationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CloseFriendRelationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CloseFriendRelationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -12,7 +12,7 @@
 
     <form asp-controller="Home" asp-action="SaveCompletedProfile" method="post">
         <table>
-            <tr>
+            <tr hidden>
                 <td>ID :</td>
                 <td><input name="user-id" type="text" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" /></td>
             </tr>
@@ -26,11 +26,11 @@
             </tr>
             <tr>
                 <td>Profile Image :</td>
-                <td><input name="profile-picture" type="text" /></td>
+                <td><input name="profile-picture" type="text" value="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" /></td>
             </tr>
             <tr>
                 <td>Biography :</td>
-                <td><input name="bio" type="text" /></td>
+                <td><input name="bio" type="text"/></td>
             </tr>
             <tr>
                 <td colspan="2"><input id="Submit1" type="submit" value="Submit" /></td>

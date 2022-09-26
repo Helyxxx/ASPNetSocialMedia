@@ -33,7 +33,7 @@ namespace ASPNetSocialMedia.Models
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
         public string? Biography { get; set; }
-        public string? ProfileImage { get; set; } = "NoImageFound.png";
+        public string? ProfileImage { get; set; } = "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
         public string? Address { get; set; }
         public int? Age { get; set; }
 
