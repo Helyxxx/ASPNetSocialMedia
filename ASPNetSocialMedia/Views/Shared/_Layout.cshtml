@@ -1,6 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +11,31 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ASPNetSocialMedia.styles.css" asp-append-version="true" />
+    <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <style>
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 100%;
+        }
+
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+          padding: 16px;
+        }
+    </style>
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="margin:0px !important;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="margin:0px !important; ">
             <div class="container-fluid">
                 <a asp-area="" asp-controller="Home" asp-action="Index"><img src="https://i.ibb.co/W0L3g2y/logo.png" alt="logo" width="50" height="50"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -41,27 +59,56 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="container-fluid" id="main">
         <main role="main" class="pb-3">
             @if (SignInManager.IsSignedIn(User))
             {
                 <div class="sidebar">
-                    <img src="https://i.ibb.co/7SC8jpg/profile-picture.png" alt="profile-picture" id="profile" />
-                    <div id="tab">@UserManager.GetUserName(User)</div>
-                  
-                    <div id="tab">
-                        <a asp-area="" asp-controller="Home" asp-action="Index">My Feed</a>
-                     </div>
-                    <div id="tab">
-                        <a class="nav-text" asp-area="" asp-controller="Users" asp-action="Index">Find Friends</a>
-                    </div>
-                    <div id="tab">
-                        <a class="nav-text" asp-area="" asp-controller="Home" asp-action="Chat">Public Chat</a>
-                    </div>
-                </div>
 
+                    <!--Profile Picture / Name / Bio-->
+                    <div id="tab">
+                        <div class="card">
+                            <img src="@UserManager.GetUserAsync(User).Result.ProfileImage" alt="Avatar" style="width:100%">
+                            <div class="container">
+                                <h4><a href="/"><b>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</b></a></h4>
+                                <p><i>@UserManager.GetUserAsync(User).Result.Biography</i></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Profile-->
+                    <div id="tab">
+                        <img src="https://i.ibb.co/LSXHV7D/profile.png" alt="profile" width="30">
+                        <a href="/Home/CompleteProfile">Edit Profile</a>
+                    </div>
+
+                    <!--Posts-->
+                    <div id="tab">
+                        <img src="https://i.ibb.co/wN6gKKK/posts.png" alt="posts" width="30">
+                        <a href="/Posts">Your Posts</a>
+                    </div>
+
+                    <!--Find Friends-->
+                    <div id="tab">
+                        <img src="https://i.ibb.co/P9WtZBV/friends.png" alt="friends" width="30">
+                        <a href="/ApplicationUser">Find Friends</a>
+                    </div>
+
+                    <!--Chat-->
+                    <div id="tab">
+                        <img src="https://i.ibb.co/F4h7MLc/chat.png" alt="chat" width="30">
+                        <a href="/Home/Chat">Chat</a>
+                    </div>
+
+                    <!--Logout-->
+                    <div id="tab">
+                        <img src="https://i.ibb.co/DzRh382/logout.png" alt="logout" width="30">
+                        <a href="/Identity/Account/Logout?returnUrl=%2F">Logout</a>
+                    </div>
+
+                </div>
             }
-            
+
             @RenderBody()
         </main>
     </div>

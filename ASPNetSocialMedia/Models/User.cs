@@ -26,8 +26,8 @@ namespace ASPNetSocialMedia.Models
         public string? PhoneNumber { get; set; }
         public string? AdminID { get; set; }
 
-        public IEnumerable<Photo> Photos { get; set; } = new List<Photo>();
-        public ICollection<Post> Posts { get; set; } = new List<Post>();
-        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public class FindFirst
+        {
+        }
     }
 }

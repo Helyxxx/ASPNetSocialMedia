@@ -1,0 +1,41 @@
+﻿@using System.Security.Claims
+
+<style>
+    #complete-profile{
+        padding: 50px;
+    }
+</style>
+
+<div class="container-fluid" id="complete-profile">
+
+    <h1>Complete | Edit User Profile</h1>
+
+    <form asp-controller="Home" asp-action="SaveCompletedProfile" method="post">
+        <table>
+            <tr>
+                <td>ID :</td>
+                <td><input name="user-id" type="text" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" /></td>
+            </tr>
+            <tr>
+                <td>First Name :</td>
+                <td><input name="first-name" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Last Name :</td>
+                <td><input name="last-name" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Profile Image :</td>
+                <td><input name="profile-picture" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Biography :</td>
+                <td><input name="bio" type="text" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input id="Submit1" type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+

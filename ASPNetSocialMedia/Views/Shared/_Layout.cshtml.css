@@ -1,4 +1,6 @@
-﻿
+﻿* {
+    font-family: 'Montserrat', sans-serif;
+}
 
 #footer {
     position: fixed;
@@ -14,7 +16,7 @@
     left: 0;
     background-color: #D9D7F1;
     font-family: 'Open Sans', sans-serif;
-    padding: 1vw;
+    
     text-align:center;
 }
 
@@ -25,10 +27,20 @@
 }
 
 #tab {
-    padding: 0.25vw;
+    padding: 0.75vw;
     font-size: 1.5vw;
     word-wrap: break-word;
 }
+
+    #tab a {
+        text-decoration: none;
+        color:black;
+    }
+
+    #tab a:hover {
+        text-decoration: underline;
+        color: black;
+    }
 
 .pb-3{
     margin-left: 15vw;

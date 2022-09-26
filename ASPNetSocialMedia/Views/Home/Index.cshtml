@@ -1,49 +1,65 @@
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
 
-<style>
-h1{
-    margin-top: 10vw;
-    text-align: center;
-    margin-right:15vw;
-}
-
-#postBtn{
-    margin-top:15px;
-}
-</style>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@using System.Security.Claims
+@model ASPNetSocialMedia.Models.Post
 
 <!doctype html>
 <html>
 <head>
     <title>Social Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    @if (!SignInManager.IsSignedIn(User))
-    {
-        <h1>Welcome To The Coolest Social Media Platform</h1>
-    }
-
-
+    
     @if (SignInManager.IsSignedIn(User))
     {
+        <div  id="alert" class="alert alert-info" role="alert">
+            If you are a new user - Please complete your profile information
+            <button type="button" class="btn btn-info">
+                <a href="/Home/CompleteProfile">Complete Profile</a>
+            </button>
+        </div>
 
-    <div class="card">
-
-        <div class="card-header">How is your day? Post here!</div>
-
-        <div class="card-body">
-
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control" aria-describedby="inputGroup-sizing-sm">
+        <!--Create Post-->
+        <div class="card" style="width: 40rem;">
+            <div class="card-body">
+                <h5 class="card-title">Post</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Tell About Your Day</h6>
+                <form asp-controller="Posts" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <textarea asp-for="PostContent" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="WhoPosted" class="form-control" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Post" class="btn btn-info" style="margin-top:10px" />
+                    </div>
+                </form>
             </div>
-
-            <a href="#" class="btn btn-primary" id="postBtn">Post</a>
-         </div>
-    </div>
+        </div>
+        
     }
-    
+
+    else{
+        
+        <style>
+            #main{
+                width: 100%;
+                margin: 0px !important;
+                padding:0px !important;
+                background-image: url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80");
+                background-size:cover;
+                height: calc(100vh - 55.98px);
+            }
+        </style>
+    }
     
 </body>
 </html>

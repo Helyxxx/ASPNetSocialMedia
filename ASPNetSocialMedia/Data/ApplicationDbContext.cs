@@ -5,7 +5,7 @@ using ASPNetSocialMedia.Data.Configuration;
 
 namespace ASPNetSocialMedia.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -14,15 +14,7 @@ namespace ASPNetSocialMedia.Data
         public DbSet<ASPNetSocialMedia.Models.User> User { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<ASPNetSocialMedia.Models.Friendship> Friendship { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new PostConfiguration());
-
-            base.OnModelCreating(builder);
-        }
+        public DbSet<ASPNetSocialMedia.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ASPNetSocialMedia.Models.Post> Post { get; set; }
     }
 }
