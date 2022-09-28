@@ -4,6 +4,31 @@
     ViewData["Title"] = "Create";
 }
 
+<style>
+
+
+    h1, h2 {
+        text-align: center;
+        padding: 1vw;
+    }
+
+    .form-floating {
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .form-group{
+        padding-top: 0.75vw;
+    }
+
+</style>
+
 <h4>Send a new message</h4>
 <hr />
 <div class="row">
@@ -40,14 +65,14 @@
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Send" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to Message Box</a>
+    <a asp-action="Index">Back to Inbox</a>
 </div>
 
 @section Scripts {
