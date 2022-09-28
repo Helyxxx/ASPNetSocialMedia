@@ -21,10 +21,49 @@ namespace ASPNetSocialMedia.Controllers
         }
 
         // GET: Messages
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //      return View(await _context.Messages.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-              return View(await _context.Messages.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+       
+
+            var messages = from m in _context.Messages
+                           select m;
+
+            messages = messages.Where(s => s.FriendEmail.Contains(User.Identity.Name));
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                messages = messages.Where(s => s.UserEmail.Contains(searchString));
+            }
+
+
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    messages = messages.OrderByDescending(m => m.FriendEmail);
+                    break;
+                case "Date":
+                    messages = messages.OrderBy(m => m.CreationDate);
+                    break;
+                case "date_desc":
+                    messages = messages.OrderByDescending(m => m.CreationDate);
+                    break;
+                default:
+                    messages = messages.OrderBy(m => m.FriendEmail);
+                    break;
+            }
+            return View(await messages.AsNoTracking().ToListAsync());
         }
+
 
         // GET: Messages/Details/5
         public async Task<IActionResult> Details(int? id)

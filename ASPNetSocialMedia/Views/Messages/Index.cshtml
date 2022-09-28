@@ -9,20 +9,28 @@
 <p>
     <a asp-action="Create">Send a new message</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by email: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                Message Content
-            </th>
-            <th hidden>
-                @Html.DisplayNameFor(model => model.UserEmail)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">From</a>
             </th>
             <th>
-                From
+                <a>Message Content</a>
             </th>
             <th>
-                Date
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a>
             </th>
             <th></th>
         </tr>
@@ -30,15 +38,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MessageContent)
-            </td>
-            <td hidden>
+
+            <td >
                 @Html.DisplayFor(modelItem => item.UserEmail)
             </td>
-            <td>
+                <td hidden>
                 @Html.DisplayFor(modelItem => item.FriendEmail)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageContent)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
