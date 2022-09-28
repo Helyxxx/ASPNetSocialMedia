@@ -4,38 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Friend List</h1>
+<h1>Close Friends List</h1>
 
 <p>
-    <a asp-action="Create">Add a new close friend!</a>
+    <button type="button" class="btn btn-info"><a asp-action="Create">Add a new close friend!</a></button>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Close Friend Name
-            </th>
-            <th>
-                Close Friend Email
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CloseFriendName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CloseFriendEmail)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CloseFriendRelationId">Edit Contact Name</a> |
-                <a asp-action="Details" asp-route-id="@item.CloseFriendRelationId">Message History</a> |
-                <a asp-action="Delete" asp-route-id="@item.CloseFriendRelationId">Delete</a>
-            </td>
-        </tr>
+
+
+@foreach (var item in Model)
+{
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading"> @Html.DisplayFor(modelItem => item.CloseFriendName)</h4>
+        <p>@Html.DisplayFor(modelItem => item.CloseFriendEmail)</p>
+        <hr>
+        <p class="mb-0">
+            <a asp-action="Edit" asp-route-id="@item.CloseFriendRelationId">Edit Contact Name</a> |
+            <a asp-action="Details" asp-route-id="@item.CloseFriendRelationId">Message History</a> |
+            <a asp-action="Delete" asp-route-id="@item.CloseFriendRelationId">Delete</a>
+        </p>
+    </div>
 }
-    </tbody>
-</table>

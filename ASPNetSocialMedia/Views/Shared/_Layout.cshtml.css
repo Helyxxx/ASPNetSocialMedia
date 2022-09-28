@@ -14,7 +14,6 @@
     width: 100%;
 }
 
-
 .body-text {
     margin-left: 150px;
     font-size: 18px;
@@ -35,6 +34,7 @@
     top: 70px;
     bottom: 50px;
     height: auto;
+    font-size: 1.1vw;
 }
 
 
@@ -46,9 +46,10 @@
         text-decoration: none;
         font-size-adjust: inherit;
         font-family: 'Anton', sans-serif;
-        font-size: x-large;
+        
         position: relative;
         text-decoration: none;
+        
     }
 
         .sidebar a:after {
