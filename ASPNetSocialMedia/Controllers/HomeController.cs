@@ -1,9 +1,12 @@
 ﻿using ASPNetSocialMedia.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Diagnostics;
 
 namespace ASPNetSocialMedia.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -18,28 +21,32 @@ namespace ASPNetSocialMedia.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin,User")]
         public IActionResult About()
         {
             return View();
         }
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Contact()
         {
             return View();
         }
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Feed()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Chat()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Weather()
         {
             return View();
         }
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Quote()
         {
             return View();
@@ -50,12 +57,12 @@ namespace ASPNetSocialMedia.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+        [Authorize(Roles = "Admin,User")]
         public IActionResult CompleteProfile()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin,User")]
         [HttpPost]
         public IActionResult SaveCompletedProfile()
         {
@@ -79,7 +86,7 @@ namespace ASPNetSocialMedia.Controllers
             }
             return View("Index");
         }
-
+        [Authorize(Roles = "Admin,User")]
         public IActionResult SavePost()
         {
             Post p = new Post();

@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using ASPNetSocialMedia.Data;
 using ASPNetSocialMedia.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ASPNetSocialMedia.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class MessagesController : Controller
     {
         private readonly ApplicationDbContext _context;
