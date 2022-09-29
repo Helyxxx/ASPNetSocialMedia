@@ -4,22 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Inbox</h1>
-
-<p>
-    <button type="button" class="btn btn-info"><a asp-action="Create">Send a new message</a></button>
-</p>
-<p>
-    <button type="button" class="btn btn-info"><a asp-action="SentMessages">Sent messages</a></button>
-</p>
-
+<h1>SentMessages</h1>
+<a asp-action="Index">Back to Inbox</a>
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
             Find by email: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
             <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
+            <a asp-action="SentMessages">Back to Full List</a>
         </p>
     </div>
 </form>
@@ -28,13 +21,13 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">From</a>
+                <a asp-action="SentMessages" asp-route-sortOrder="@ViewData["NameSortParm"]">To</a>
             </th>
             <th>
                 <a>Message Content</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a>
+                <a asp-action="SentMessages" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a>
             </th>
             <th></th>
         </tr>
@@ -43,10 +36,10 @@
 @foreach (var item in Model) {
         <tr>
 
-            <td >
+                <td hidden>
                 @Html.DisplayFor(modelItem => item.UserEmail)
             </td>
-                <td hidden>
+                <td >
                 @Html.DisplayFor(modelItem => item.FriendEmail)
             </td>
                 <td>
@@ -55,10 +48,5 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.MessageId">Details</a> 
-                <a asp-action="Delete" asp-route-id="@item.MessageId">Delete</a>
-            </td>
-        </tr>  
+        </tr>
 }
-
