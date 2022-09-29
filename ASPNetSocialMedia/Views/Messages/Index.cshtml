@@ -4,21 +4,121 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Inbox</h1>
+<style>
+    .button-6 {
+      align-items: center;
+      background-color: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: .25rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+      box-sizing: border-box;
+      color: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      display: inline-flex;
+      font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 1.25;
+      margin-right: 15px;
+      min-height: 3rem;
+      padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+      position: relative;
+      text-decoration: none;
+      transition: all 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      width: auto;
+    }
 
-<p>
-    <button type="button" class="btn btn-info"><a asp-action="Create">Send a new message</a></button>
-</p>
-<p>
-    <button type="button" class="btn btn-info"><a asp-action="SentMessages">Sent messages</a></button>
-</p>
+    .button-6:hover,
+    .button-6:focus {
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+      color: rgba(0, 0, 0, 0.65);
+    }
 
+    .button-6:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-6:active {
+      background-color: #F0F0F1;
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      color: rgba(0, 0, 0, 0.65);
+      transform: translateY(0);
+    }
+
+    .button-6 a{
+        text-decoration:none;
+        color:black;
+    }
+
+    #searchMessageByEmail{
+        margin-top:30px;
+    }
+    #searchMessageByEmail input{
+        margin-left:15px;
+    }
+    #searchMessageByEmail a{
+        text-decoration:none;
+        color:purple;
+        
+    }
+
+    .button-2 {
+      background-color: rgba(51, 51, 51, 0.05);
+      border-radius: 8px;
+      border-width: 0;
+      color: #333333;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 10px 12px;
+      text-align: center;
+      transition: all 200ms;
+      vertical-align: baseline;
+      white-space: nowrap;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .table a{
+        text-decoration:none;
+        color: black;
+    }
+
+    .table{
+        margin-top:20px;
+    }
+    .table thead tr{
+        background-color:#d9d7f1;
+        padding:10px;
+    }
+
+</style>
+
+<h1>
+    <img src="https://i.ibb.co/F04Z78m/inbox.png" alt="inbox" width:25>
+    Inbox
+</h1>
+
+    <button class="button-6"><a asp-action="Create">Send a message</a></button>
+    <button class ="button-6"><a asp-action="SentMessages">Sent messages</a></button>
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
-        <p>
+        <p id="searchMessageByEmail">
             Find by email: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
+            <input type="submit" value="Search" class="button-2"/><br />
             <a asp-action="Index">Back to Full List</a>
         </p>
     </div>
