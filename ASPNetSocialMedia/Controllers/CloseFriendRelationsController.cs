@@ -23,7 +23,13 @@ namespace ASPNetSocialMedia.Controllers
         // GET: CloseFriendRelations
         public async Task<IActionResult> Index()
         {
-              return View(await _context.CloseFriendRelation.ToListAsync());
+
+            var closeFriends = from f in _context.CloseFriendRelation
+                           select f;
+
+            closeFriends = closeFriends.Where(f => f.CloseUserEmail.Contains(User.Identity.Name));
+
+            return View(await closeFriends.AsNoTracking().ToListAsync());
         }
 
         // GET: CloseFriendRelations/Details/5

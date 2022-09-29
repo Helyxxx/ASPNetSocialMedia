@@ -23,7 +23,12 @@ namespace ASPNetSocialMedia.Controllers
         // GET: FriendRelations
         public async Task<IActionResult> Index()
         {
-              return View(await _context.FriendRelation.ToListAsync());
+            var friends = from f in _context.FriendRelation
+                               select f;
+
+            friends = friends.Where(f => f.UserEmail.Contains(User.Identity.Name));
+
+            return View(await friends.AsNoTracking().ToListAsync());
         }
 
         // GET: FriendRelations/Details/5
