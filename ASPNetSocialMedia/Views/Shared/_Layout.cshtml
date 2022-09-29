@@ -10,7 +10,7 @@
     <title>@ViewData["Title"] - ASPNetSocialMedia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ASPNetSocialMedia.styles.css" asp-append-version="true" />
+    
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/W0L3g2y/logo.png">
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/ASPNetSocialMedia.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -54,27 +55,26 @@
                 </div>
                 <!-- End of problematic section -->
 
-                <a href="/Messages">Messages</a>
 
+                <a b-lo8178di51 class="superMenu" asp-controller="Messages" asp-action="Index">Messages</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="ApplicationUser" asp-action="Index">Browse Users</a>
                 <div class="dropdown">
-                    <a href="/FriendRelations">My Friends</a>
+                     <a b-lo8178di51 class="superMenu" asp-controller="FriendRelations" asp-action="Index">My Friends</a>
                     
                     <div class="dropdown-content">
-                        <a href="/FriendRelations">Friend List</a>
-                        <a href="/CloseFriendRelations">Close Friends</a>
-                        <a href="/ApplicationUser">Find Friends</a>
-                        
+
+                        <a b-lo8178di51 class="superMenu" asp-controller="FriendRelations" asp-action="Index">Friend List</a>
+                        <a b-lo8178di51 class="superMenu" asp-controller="CloseFriendRelations" asp-action="Index">Close Friends</a>
+                     
                     </div>
                 </div>
 
-          
-                <a href="/Posts">My Posts</a>
-                <a href="/Home/CompleteProfile">Edit Profile</a>
-                <a href="/Home/Chat">Public Chat</a>
-                <a href="/Home/Weather">Weather</a>
-                <a href="/Home/About">About us</a>
-                <a href="/Home/Contact">Contact us</a>
-                <a href="/Identity/Account/Logout?returnUrl=%2F">Logout</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="Posts" asp-action="Index">My Posts</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="CompleteProfile">Edit Profile</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Index">Weather</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="About us">About us</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Contact">Contact us</a>
+                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Chat">Public Chat</a>
             </div>
         }
         <div id="mainBody">
