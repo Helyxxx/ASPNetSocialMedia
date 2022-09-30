@@ -29,8 +29,14 @@ namespace ASPNetSocialMedia
 
             return View(await _context.Post.Where(x => x.WhoPosted == userId).ToListAsync());
         }
-        
-       
+
+        // GET All Users Posts
+        public async Task<IActionResult> AllUsersPosts()
+        {
+            return View(await _context.Post.ToListAsync());
+        }
+
+
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
