@@ -16,6 +16,7 @@ namespace ASPNetSocialMedia.Data
         public DbSet<ASPNetSocialMedia.Models.FriendRelation> FriendRelation { get; set; }
         public DbSet<ASPNetSocialMedia.Models.CloseFriendRelation> CloseFriendRelation { get; set; }
         public DbSet<ASPNetSocialMedia.Models.Messages> Messages { get; set; }
+        public DbSet<ASPNetSocialMedia.Models.UserFeedback> UserFeedback { get; set; }
        
     }
 }

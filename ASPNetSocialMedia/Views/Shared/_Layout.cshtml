@@ -30,9 +30,27 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1">
                     </ul>
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <div class="dropdown">
+                            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </button>
+                            <div class="dropdown-content">
+
+                            @*    <a b-lo8178di51 class="superMenu dropdown-item" asp-controller="ApplicationUser" asp-action="Index"> Users List </a>*@
+                                <div class="dropdown-divider"></div>
+                                <a b-lo8178di51 class="superMenu dropdown-item" asp-controller="UserFeedback" asp-action="Index"> User Feedback </a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </div>
+
+                    }
                     <partial name="_LoginPartial" />
                 </div>
             </div>

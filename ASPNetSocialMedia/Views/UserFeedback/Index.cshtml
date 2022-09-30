@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ASPNetSocialMedia.Models.UserFeedback>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Client Complaints</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Send Date
+            </th>
+            <th> Action </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeedbackName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeedbackEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeedbackMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FeedbackId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FeedbackId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FeedbackId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

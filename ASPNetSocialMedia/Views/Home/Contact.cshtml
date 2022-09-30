@@ -1,4 +1,4 @@
-﻿
+﻿@model ASPNetSocialMedia.Models.UserFeedback
 
 @{
     ViewData["Title"] = "Contact Socus";
@@ -28,31 +28,31 @@
                                 <p class="mb-4 text-muted">Send us your thoughts and prayers!</p>
                             </div>
 
-
-                            <form id="contactForm">
-
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="name" type="text" placeholder="Name"/>
-                                    <label for="name">Name</label>
-                                </div>
+                            <form asp-controller="UserFeedback" asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="emailAddress" type="email" placeholder="Email Address"/>
-                                    <label for="emailAddress">Email Address</label>
-
+                                    <label asp-for="FeedbackName" class="control-label"> Name </label>
+                                    <input asp-for="FeedbackName" class="form-control" id="name" type="text" placeholder="Name" />
+                                    <span asp-validation-for="FeedbackName" class="text-danger"></span>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"></textarea>
-                                    <label for="message">Message</label>
+                                    <label asp-for="FeedbackEmail" class="control-label"> Email </label>
+                                    <input asp-for="FeedbackEmail" class="form-control" id="name" type="text" placeholder="Email" />
+                                    <span asp-validation-for="FeedbackEmail" class="text-danger"></span>
                                 </div>
 
-                                <div class="d-grid">
-                                    <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                                <div class="form-floating mb-3">
+                                    <label asp-for="FeedbackMessage" class="control-label"> Message </label>
+                                    <input asp-for="FeedbackMessage" class="form-control" id="name" type="text" placeholder="Message" style="height: 10rem;" />
+                                    <span asp-validation-for="FeedbackMessage" class="text-danger"></span>
                                 </div>
 
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
                             </form>
-
 
                         </div>
                     </div>
@@ -92,3 +92,9 @@
         </div>
     </div>
 </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
