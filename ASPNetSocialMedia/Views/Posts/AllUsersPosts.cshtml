@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ASPNetSocialMedia.Models.Post>
 
 @{
-    ViewData["Title"] = "Feed | Posts";
+    ViewData["Title"] = "Feed";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,6 +10,9 @@
 {
     <div class="container">
         <div class="card" style="margin:10px">
+            <div class="card-body">
+                <p class="card-text">@Html.DisplayFor(modelItem => item.WhoPosted)</p>
+            </div>
             <div class="card-body">
                 <p class="card-text">@Html.DisplayFor(modelItem => item.PostContent)</p>
             </div>

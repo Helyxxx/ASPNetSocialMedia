@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPNetSocialMedia.Data;
 using ASPNetSocialMedia.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ASPNetSocialMedia.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserFeedbackController : Controller
     {
         private readonly ApplicationDbContext _context;

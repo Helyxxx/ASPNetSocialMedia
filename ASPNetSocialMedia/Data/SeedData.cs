@@ -79,7 +79,7 @@ namespace ASPNetSocialMedia.Data
 
         public static void SeedDB(ApplicationDbContext context)
         {
-           //INFO TO FILL THE DATABASE GOES HERE
+            
         }
     }
 }

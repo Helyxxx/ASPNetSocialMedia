@@ -16,6 +16,14 @@ namespace ASPNetSocialMedia.Models
             Age = age;
         }
 
+        public ApplicationUser(string? firstName, string? lastName, string? biography, string? profileImage)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Biography = biography;
+            ProfileImage = profileImage;
+        }
+
         public ApplicationUser()
         {
 

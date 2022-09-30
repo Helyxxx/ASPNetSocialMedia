@@ -41,16 +41,6 @@ namespace ASPNetSocialMedia.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "Admin,User")]
-        public IActionResult Weather()
-        {
-            return View();
-        }
-        [Authorize(Roles = "Admin,User")]
-        public IActionResult Quote()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

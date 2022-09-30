@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 
-namespace ASPNetSocialMedia
+namespace ASPNetSocialMedia.Controllers
 {
     public class PostsController : Controller
     {
@@ -25,7 +25,7 @@ namespace ASPNetSocialMedia
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.Identity.Name;
 
             return View(await _context.Post.Where(x => x.WhoPosted == userId).ToListAsync());
         }
@@ -62,7 +62,7 @@ namespace ASPNetSocialMedia
             return View();
         }
 
-        
+
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -162,14 +162,14 @@ namespace ASPNetSocialMedia
             {
                 _context.Post.Remove(post);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int? id)
         {
-          return _context.Post.Any(e => e.PostId == id);
+            return _context.Post.Any(e => e.PostId == id);
         }
     }
 }

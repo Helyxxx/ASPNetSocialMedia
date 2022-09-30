@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!-- If you drop the database while still being logged in, you'll need to remove this part while starting the projct for the first time, or empty your browser cache.' -->
+<div class="card" id="profile">
+    <img src="@UserManager.GetUserAsync(User).Result.ProfileImage" alt="Avatar" style="width:100%">
+    <div class="container">
+        <h4><b>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</b></h4>
+        <p><i>@UserManager.GetUserAsync(User).Result.Biography</i></p>
+    </div>
+</div>

@@ -63,16 +63,11 @@
             <!-- The sidebar -->
             <div class="sidebar">
 
-                <!-- Problem with this part, need to be removed when starting the first time -->
-                <div class="card" id="profile">
-                    <img src="@UserManager.GetUserAsync(User).Result.ProfileImage" alt="Avatar" style="width:100%">
-                    <div class="container">
-                        <h4><a href="/"><b>@UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName</b></a></h4>
-                        <p><i>@UserManager.GetUserAsync(User).Result.Biography</i></p>
-                    </div>
+                <div>
+                    @Html.Partial("_UserPicturePartial")
                 </div>
-                <!-- End of problematic section -->
 
+                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Index">Home</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="Posts" asp-action="AllUsersPosts">Feed</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="Messages" asp-action="Index">Messages</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="ApplicationUser" asp-action="Index">Browse Users</a>
@@ -89,8 +84,6 @@
 
                 <a b-lo8178di51 class="superMenu" asp-controller="Posts" asp-action="Index">My Posts</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="CompleteProfile">Edit Profile</a>
-                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Weather">Weather</a>
-                <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Quote">Inspiring Quote</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="About">About us</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Contact">Contact us</a>
                 <a b-lo8178di51 class="superMenu" asp-controller="Home" asp-action="Chat">Public Chat</a>
